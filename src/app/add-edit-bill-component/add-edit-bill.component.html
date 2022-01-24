@@ -1,0 +1,119 @@
+<h3 mat-dialog-title>Add New Bill</h3>
+<div mat-dialog-content
+    class="container-fluid">
+
+    <form autocomplete="off"
+        [formGroup]="expenseForm">
+        <div class="row">
+            <!-- Shop Name -->
+            <div class="col-4">
+                <mat-form-field class="w-100">
+                    <mat-label>Shop name:</mat-label>
+                    <input type="text"
+                        matInput
+                        name="shopName"
+                        formControlName="shopName"
+                        placeholder="Shop Name">
+                </mat-form-field>
+            </div>
+            <!-- Date of Purchase -->
+            <div class="col-4">
+                <mat-form-field class="w-100">
+                    <mat-label>Choose purchase date</mat-label>
+                    <input matInput
+                        name="purchaseDate"
+                        [matDatepicker]="picker"
+                        formControlName="purchaseDate"
+                        type="text">
+                    <mat-datepicker-toggle matSuffix
+                        [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <!-- Bill Number -->
+            <div class="col-4">
+                <mat-form-field class="w-100">
+                    <mat-label>Bill number:</mat-label>
+                    <input matInput
+                        type="text"
+                        name="billNumber"
+                        formControlName="billNumber"
+                        placeholder="Bill Number">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field class="w-100">
+                    <mat-label>Particulars</mat-label>
+                    <input matInput
+                        type="text"
+                        name="particular"
+                        formControlName="particular"
+                        placeholder="Item Purchased">
+                </mat-form-field>
+            </div>
+            <div class="col-1">
+                <mat-form-field class="w-100">
+                    <mat-label>QTY</mat-label>
+                    <input matInput
+                        type="text"
+                        name="quantity"
+                        formControlName="quantity"
+                        placeholder="">
+                </mat-form-field>
+            </div>
+            <div class="col-2">
+                <mat-form-field class="w-100">
+                    <mat-label>Unit</mat-label>
+                    <mat-select formControlName="unit"
+                        placeholder="">
+                        <mat-option *ngFor="let u of units"
+                            [value]="u.value">
+                            {{ u.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-1">
+                <mat-form-field class="w-100">
+                    <mat-label>RPH</mat-label>
+                    <input matInput
+                        type="text"
+                        name="ratePerUnit"
+                        formControlName="ratePerUnit"
+                        placeholder="">
+                </mat-form-field>
+            </div>
+            <div class="col-2">
+                <mat-form-field class="w-100">
+                    <mat-label>Amount</mat-label>
+                    <input matInput
+                        type="text"
+                        name="amount"
+                        formControlName="amount"
+                        placeholder="">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <mat-checkbox formControlName="billSettled">Is Bill Paid</mat-checkbox>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions
+    class="d-flex justify-content-end">
+    <button mat-raised-button
+        color="accent"
+        type="button"
+        class="mr-1"
+        (click)="onSave()">Save</button>
+    <button mat-raised-button
+        type="button">Close</button>
+</div>
